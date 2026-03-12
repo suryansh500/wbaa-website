@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+<%- include('partials/navbar') %>
+
+<section class="results-page py-5">
+  <div class="container">
+
+    <h2 class="section-title mb-5">
+      Upcoming Matches
+    </h2>
+
+    <% if (!matches || matches.length === 0) { %>
+      <p class="text-center text-muted">No upcoming matches.</p>
+    <% } else { %>
+
+      <div class="row g-4">
+
+        <% matches.forEach(match => { %>
+          <div class="col-6 col-md-4 col-lg-3">
+
+            <div class="tournament-card">
+
+              <img
+                src="<%= match.poster?.url || '/images/default.jpg' %>"
+                alt="Poster"
+                class="upcoming-poster"
+                onclick="openPoster('<%= match.poster?.url %>')"
+              >
+
+              <div class="tournament-info">
+                <h6><%= match.name %></h6>
+                <h6>📍 <%= match.location %></h6>
+                <p><%= match.date.toDateString() %></p>
+              </div>
+
+            </div>
+
+          </div>
+        <% }) %>
+
+      </div>
+
+    <% } %>
+
+  </div>
+</section>
+
+<!-- FULLSCREEN POSTER -->
+<div id="posterOverlay" class="media-overlay">
+  <div class="media-viewer">
+    <span class="media-close" onclick="closePoster()">✕</span>
+    <img id="posterViewer">
+  </div>
+</div>
+
+<script>
+function openPoster(src) {
+  if (!src) return;
+  document.getElementById('posterViewer').src = src;
+  document.getElementById('posterOverlay').classList.add('active');
+}
+
+function closePoster() {
+  document.getElementById('posterOverlay').classList.remove('active');
+}
+</script>
+<%- include('partials/footer') %>
+
+<!-- FULLSCREEN POSTER -->
+<div id="posterOverlay" class="media-overlay">
+  <div class="media-viewer">
+    <span class="media-close" onclick="closePoster()">✕</span>
+    <img id="posterViewer">
+  </div>
+</div>
+
+<script>
+function openPoster(src) {
+  if (!src) return;
+  document.getElementById('posterViewer').src = src;
+  document.getElementById('posterOverlay').classList.add('active');
+}
+
+function closePoster() {
+  document.getElementById('posterOverlay').classList.remove('active');
+}
+</script>
+</body>
+</html>

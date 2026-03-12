@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+<%- include('../partials/navbar') %>
+
+<div class="container py-5">
+
+  <h2 class="mb-4">Admin Dashboard</h2>
+
+  <div class="list-group">
+
+    <a href="/admin/tournaments/new" class="list-group-item list-group-item-action">
+  ➕ Add New Tournament
+</a>
+
+
+    <a href="/admin/manage-results" class="list-group-item list-group-item-action">
+      🏆 Manage Tournaments
+    </a>
+
+    <a href="/admin/manage-upcoming" class="list-group-item list-group-item-action">
+  Manage Upcoming Matches
+    </a>
+
+    <a href="/admin/home-gallery" class="list-group-item list-group-item-action">
+      🖼️ Manage Home Gallery
+    </a>
+
+    <a href="/admin/training-centre" class="list-group-item list-group-item-action">
+  Manage Training Centres
+    </a>
+
+    <a href="/admin/logout" class="list-group-item list-group-item-action text-danger">
+      🚪 Logout
+    </a>
+
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

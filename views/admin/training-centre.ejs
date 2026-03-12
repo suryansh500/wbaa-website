@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+<%- include('../partials/navbar') %>
+
+<div class="container py-4">
+
+  <h3 class="mb-4">Manage Training Centres</h3>
+
+  <!-- ================= ADD FORM ================= -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5>Add New Centre</h5>
+
+      <form action="/admin/training-centre/add" method="POST">
+        <div class="row g-2">
+
+          <div class="col-md-3">
+            <input class="form-control" name="district" placeholder="District" required>
+          </div>
+
+          <div class="col-md-3">
+            <input class="form-control" name="centreName" placeholder="Centre Name" required>
+          </div>
+
+          <div class="col-md-2">
+            <input class="form-control" name="headName" placeholder="Head Name">
+          </div>
+
+          <div class="col-md-2">
+            <input class="form-control" name="phone" placeholder="Phone">
+          </div>
+
+          <div class="col-md-2">
+            <input class="form-control" name="address" placeholder="Address">
+          </div>
+
+        </div>
+
+        <button class="btn btn-success mt-3">Add Centre</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= LIST ================= -->
+  <div class="card">
+    <div class="card-body">
+      <h5>All Centres</h5>
+
+      <div class="table-responsive">
+        <table class="table table-bordered align-middle">
+          <thead>
+            <tr>
+              <th>District</th>
+              <th>Centre</th>
+              <th>Head</th>
+              <th>Phone</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% centres.forEach(c => { %>
+              <tr>
+                <td><%= c.district %></td>
+                <td><%= c.centreName %></td>
+                <td><%= c.headName %></td>
+                <td><%= c.phone %></td>
+                <td>
+                  <form action="/admin/training-centre/<%= c._id %>/delete" method="POST">
+                    <button class="btn btn-sm btn-danger"
+                            onclick="return confirm('Delete this centre?')">
+                      Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

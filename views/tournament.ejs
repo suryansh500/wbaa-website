@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+
+  <%- include('partials/navbar') %>
+
+  <!-- TOURNAMENT PAGE -->
+  <section class="tournament-page py-5">
+    <div class="container">
+
+      <!-- TOURNAMENT MEDIA -->
+<div class="tournament-media mb-5">
+  <h4 class="mb-3">Event Gallery</h4>
+
+  <div class="media-scroll d-flex gap-3 overflow-auto">
+
+    <!-- POSTER -->
+    <% if (tournament.poster && tournament.poster.url) { %>
+  <div class="media-item" data-src="<%= tournament.poster.url %>">
+    <img src="<%= tournament.poster.url %>" alt="Tournament Poster">
+  </div>
+<% } %>
+
+    <!-- GALLERY IMAGES -->
+   <% if (tournament.gallery?.images?.length > 0) { %>
+  <% tournament.gallery.images.forEach(img => { %>
+    <div class="media-item" data-src="<%= img.url %>">
+      <img src="<%= img.url %>" alt="Tournament Image">
+    </div>
+  <% }) %>
+<% } %>
+
+
+    <!-- VIDEOS -->
+    <% if (tournament.gallery?.videos?.length > 0) { %>
+  <% tournament.gallery.videos.forEach(video => { %>
+    <div class="media-item" data-type="video" data-src="<%= video.url %>">
+      <video muted>
+        <source src="<%= video.url %>" type="video/mp4">
+      </video>
+    </div>
+  <% }) %>
+<% } %>
+
+    <!-- FALLBACK -->
+    <% if ((!tournament.poster || !tournament.poster.url) &&(!tournament.gallery ||((tournament.gallery.images?.length || 0) === 0 &&(tournament.gallery.videos?.length || 0) === 0))) { %>
+  <p class="text-muted">No media uploaded yet.</p>
+<% } %>
+</div>
+</div>
+      <!-- TOURNAMENT INFO -->
+      <h2 class="fw-bold mb-2"><%= tournament.name %></h2>
+<h4 class="text-muted mb-1">📍 <%= tournament.location %></h4>
+<h6 class="text-muted">
+  📅 <%= tournament.date.toDateString() %>
+</h6>
+<!-- RESULTS SECTION -->
+<div class="results-section">
+
+  <h3 class="section-title mb-4">Results</h3>
+
+  <% if (!tournament.categories || tournament.categories.length === 0) { %>
+    <p class="text-muted">Results not published yet.</p>
+  <% } else { %>
+
+    <% tournament.categories.forEach(cat => { %>
+
+      <div class="result-group mb-4">
+        <h5 class="fw-bold">
+          <%= cat.gender %> – <%= cat.division %> – <%= cat.hand %> Hand
+        </h5>
+
+        <div class="table-responsive">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>Weight</th>
+                <th>1st</th>
+                <th>2nd</th>
+                <th>3rd</th>
+                <th>4th</th>
+                <th>5th</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td><%= cat.weight || '-' %></td>
+                <td><%= cat.results?.first || '-' %></td>
+                <td><%= cat.results?.second || '-' %></td>
+                <td><%= cat.results?.third || '-' %></td>
+                <td><%= cat.results?.fourth || '-' %></td>
+                <td><%= cat.results?.fifth || '-' %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    <% }) %>
+
+  <% } %>
+
+</div>
+
+  </section>
+
+  <%- include('partials/footer') %>
+<div id="mediaOverlay" class="media-overlay">
+  <div class="media-viewer">
+    <span class="media-close" onclick="closeMedia()">✕</span>
+    <span class="media-nav media-prev" onclick="prevMedia()">‹</span>
+    <span class="media-nav media-next" onclick="nextMedia()">›</span>
+    <img id="mediaViewerImg" style="display:none">
+    <video id="mediaViewerVideo" controls style="display:none"></video>
+  </div>
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+  const mediaItems = Array.from(document.querySelectorAll('.media-item'));
+  const overlay = document.getElementById('mediaOverlay');
+
+  const imgViewer = document.getElementById('mediaViewerImg');
+  const videoViewer = document.getElementById('mediaViewerVideo');
+
+  let currentIndex = 0;
+
+  mediaItems.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      currentIndex = index;
+      openMedia();
+    });
+  });
+
+  function openMedia() {
+    const item = mediaItems[currentIndex];
+    const type = item.dataset.type || 'image';
+    const src = item.dataset.src;
+
+    imgViewer.style.display = 'none';
+    videoViewer.style.display = 'none';
+    videoViewer.pause();
+
+    if (type === 'video') {
+      videoViewer.src = src;
+      videoViewer.style.display = 'block';
+    } else {
+      imgViewer.src = src;
+      imgViewer.style.display = 'block';
+    }
+
+    overlay.classList.add('active');
+  }
+
+  function closeMedia() {
+    overlay.classList.remove('active');
+    videoViewer.pause();
+  }
+
+  function nextMedia() {
+    currentIndex = (currentIndex + 1) % mediaItems.length;
+    openMedia();
+  }
+
+  function prevMedia() {
+    currentIndex = (currentIndex - 1 + mediaItems.length) % mediaItems.length;
+    openMedia();
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

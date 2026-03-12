@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+<%- include('../partials/navbar') %>
+
+<div class="container py-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h3>Manage Upcoming Matches</h3>
+
+    <a href="/admin/upcoming/new" class="btn btn-success">
+      ➕ Add Match
+    </a>
+  </div>
+
+  <% if (!matches || matches.length === 0) { %>
+    <p class="text-muted">No upcoming matches.</p>
+  <% } else { %>
+
+    <div class="row g-4">
+
+      <% matches.forEach(match => { %>
+        <div class="col-6 col-md-4 col-lg-3">
+
+          <div class="tournament-card">
+
+            <img
+              src="<%= match.poster?.url || '/images/default.jpg' %>"
+              alt="Poster"
+            >
+
+            <div class="tournament-info">
+              <h6><%= match.name %></h6>
+              <p><%= match.date.toDateString() %></p>
+
+              <form
+                action="/admin/upcoming/<%= match._id %>/delete"
+                method="POST"
+                onsubmit="return confirm('Delete this match?')"
+              >
+                <button class="btn btn-sm btn-danger w-100 mt-2">
+                  Delete
+                </button>
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      <% }) %>
+
+    </div>
+
+  <% } %>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

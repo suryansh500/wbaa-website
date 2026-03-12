@@ -1,0 +1,44 @@
+<%- include('../partials/head') %>
+<%- include('../partials/navbar') %>
+
+<div class="container py-4">
+  <h3 class="mb-4">Manage Home Gallery</h3>
+
+  <!-- Upload form -->
+  <form action="/admin/home-gallery/update" method="POST" enctype="multipart/form-data" class="mb-4">
+    <input type="file" name="images" multiple required class="form-control mb-2">
+    <button class="btn btn-primary">Upload Photo</button>
+  </form>
+
+  <!-- Existing images -->
+  <div class="row g-3">
+    <% images.forEach(img => { %>
+      <div class="col-6 col-md-3">
+        <div class="position-relative">
+          <img src="<%= img.url %>" class="img-fluid rounded shadow-sm">
+
+          <button type="button"
+        class="btn btn-danger btn-sm position-absolute top-0 end-0"
+        onclick="markHomeDelete('<%= img.public_id %>', this)">
+  ✕
+</button>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</div>
+<script>
+function markHomeDelete(publicId, btn) {
+  // create hidden input
+  const input = document.createElement('input');
+  input.type = 'hidden';
+  input.name = 'removeImages';
+  input.value = publicId;
+
+  document.querySelector('form').appendChild(input);
+
+  // visually remove thumbnail
+  btn.closest('.col-6').remove();
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

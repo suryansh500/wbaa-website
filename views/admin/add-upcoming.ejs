@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head') %>
+</head>
+<body>
+
+<%- include('../partials/navbar') %>
+
+<div class="container py-4">
+  <h3 class="mb-4">Add Upcoming Match</h3>
+
+  <form action="/admin/upcoming" method="POST" enctype="multipart/form-data">
+
+    <div class="mb-3">
+      <label class="form-label">Match Name</label>
+      <input type="text" name="name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Location</label>
+      <input type="text" name="location" class="form-control">
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Date</label>
+      <input type="date" name="date" class="form-control" required>
+    </div>
+
+    <div class="mb-4">
+      <label class="form-label">Poster</label>
+      <input type="file" name="poster" class="form-control" accept="image/*" required>
+    </div>
+
+    <button class="btn btn-success w-100">
+      Save Match
+    </button>
+
+  </form>
+</div>
+
+</body>
+</html>

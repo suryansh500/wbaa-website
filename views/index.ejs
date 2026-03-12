@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+        <%- include('partials/navbar') %>
+<section class="federation-section py-5">
+  <div class="container">
+
+    <h2 class="text-center fw-bold mb-5">
+      Our Association & Leadership
+    </h2>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- WBAA CARD -->
+      <div class="col-md-6 col-lg-5">
+        <div class="card federation-card text-center shadow-sm h-100">
+          <div class="card-body">
+
+            <img src="/images/WhatsApp Image 2025-12-24 at 12.42.05.jpeg" class="federation-logo mb-3" alt="WBAA Logo">
+
+            <h4 class="fw-bold">West Bengal Armwrestling Association</h4>
+            <p class="text-muted mb-4">(WBAA)</p>
+
+            <img src="/images/wbaa_president.jpeg" class="owner-img mb-2" alt="WBAA President">
+
+            <h6 class="fw-semibold mb-0">President (WBAA)</h6>
+            <p class="text-muted">Mr. Babul Bikas Patranabis</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- =======================
+     HOME PHOTO GALLERY
+======================= -->
+<section class="home-gallery py-5">
+  <div class="container-fluid px-4">
+
+    <h2 class="section-title mb-4 text-center">
+      Event Highlights
+    </h2>
+
+    <% if (galleryImages && galleryImages.length) { %>
+
+      <div class="gallery-scroll-wrapper">
+        <div class="gallery-scroll-track">
+
+          <% galleryImages.forEach(img => { %>
+            <div class="gallery-item">
+              <img src="<%= img %>" class="gallery-img rounded shadow-sm">
+            </div>
+          <% }) %>
+
+          <!-- duplicate for infinite feel -->
+          <% galleryImages.forEach(img => { %>
+            <div class="gallery-item">
+              <img src="<%= img %>" class="gallery-img rounded shadow-sm">
+            </div>
+          <% }) %>
+
+        </div>
+      </div>
+
+    <% } else { %>
+      <p class="text-center text-muted">No gallery images yet.</p>
+    <% } %>
+
+  </div>
+</section>
+<section class="pafi-section py-5">
+  <div class="container">
+
+    <h2 class="section-title mb-5">
+      Under the Aegis of
+    </h2>
+
+    <!-- PAFI IDENTITY -->
+    <div class="text-center mb-5">
+      <img src="/images/cropped-PAFI-Logo-4.png" alt="PAFI Logo" class="pafi-logo mb-3">
+      <h5 class="fw-bold mb-1">
+        People's Armwrestling Federation of India
+      </h5>
+      <a class="nav-link active" href="https://pafi.co.in/"><p class="text-muted">(PAFI)</p></a>
+    </div>
+
+    <!-- PAFI OFFICIALS -->
+    <div class="row g-4 justify-content-center">
+
+      <div class="col-6 col-md-4">
+        <div class="pafi-official-card text-center">
+          <img src="/images/pafi_owner.jpg" class="official-img mb-3" alt="PAFI President">
+          <h6 class="mb-0">Ms. Preeti Jhangiani</h6>
+          <small class="text-muted">President (PAFI)</small>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-4">
+        <div class="pafi-official-card text-center">
+          <img src="/images/gen_sec_pafi.jpeg" class="official-img mb-3" alt="PAFI GS">
+          <h6 class="mb-0">Dr. Praveen Jadon</h6>
+          <small class="text-muted">General Secretary (PAFI)</small>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<section class="international-section py-5">
+  <div class="container">
+
+    <h2 class="section-title mb-5">
+      Affiliated By
+    </h2>
+
+    <div class="row justify-content-center align-items-center g-5">
+
+      <div class="col-6 col-md-4 text-center">
+        <img src="/images/AAF_logo.jpg" alt="AAF Logo" class="intl-logo mb-3">
+        <h6 class="fw-semibold">
+          Asian Armwrestling Federation
+        </h6>
+        <small class="text-muted">(AAF)</small>
+      </div>
+
+      <div class="col-6 col-md-4 text-center">
+        <img src="/images/WAF_logo.jpg" alt="WAF Logo" class="intl-logo mb-3">
+        <h6 class="fw-semibold">
+          World Armwrestling Federation
+        </h6>
+        <small class="text-muted">(WAF)</small>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<section class="about-section py-5">
+  <div class="container">
+    <h2 class="about-title text-center mb-4 mx-auto">
+      About Us
+    </h2>
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <p class="about-text text-center text-lg-justify">
+          The West Bengal Armwrestling Association (WBAA) is a recognized
+          sporting body committed to the promotion, development, and
+          governance of armwrestling across the state of West Bengal.
+          Operating under established national body <b>People's Armwrestling Federation
+          of India (PAFI)</b> and international bodies 
+          <b>Asian Armwrestling Federation (AAF)</b> 
+          and <b>World Armwrestling Federation (AAF)</b> standards, 
+          the association strives to nurture athletes,
+          organize professional competitions, and uphold the values of
+          discipline, integrity, and sportsmanship.
+        </p>
+
+        <p class="about-text text-center text-lg-justify">
+          Through structured training programs, certified officiating,
+          and transparent administration, WBAA continues to build a
+          strong foundation for armwrestling athletes while representing
+          the state at national and international platforms.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section class="officials-section py-5">
+  <div class="container">
+
+    <h2 class="section-title mb-5">
+      Our Officials
+    </h2>
+
+    <div class="row g-4 justify-content-center">
+      <!-- OFFICIAL 1 -->
+      <div class="col-6">
+        <div class="official-card text-center h-100">
+          <img src="/images/wbaa_secretary.jpeg" alt="Official" class="official-img">
+          <h5 class="mt-3 mb-1">Mr. Smritimay Das</h5>
+          <p class="official-role">Gen. Secretary (WBAA),Vice President (PAFI)</p>
+          <p class="official-desc">
+            Organizational leadership and development
+          </p>
+        </div>
+      </div>
+
+      <!-- OFFICIAL 2 -->
+      <div class="col-6">
+        <div class="official-card text-center h-100">
+          <img src="/images/pravin_dabas.jpeg" alt="Official" class="official-img">
+          <h5 class="mt-3 mb-1">Mr. Pravin Dabas</h5>
+          <p class="official-role">Chief Advisor (PAFI)</p>
+          <p class="official-desc">
+            Strategic guidance and institutional leadership
+          </p>
+        </div>
+      </div>
+
+      <!-- OFFICIAL 3 -->
+      <div class="col-6">
+        <div class="official-card text-center h-100">
+          <img src="/images/gen_sec_pafi.jpeg" alt="Official" class="official-img">
+          <h5 class="mt-3 mb-1">Dr. Praveen Jadon</h5>
+          <p class="official-role">General Secretary (PAFI)</p>
+          <p class="official-desc">
+            Administrative coordination and governance
+          </p>
+        </div>
+      </div>
+
+      <!-- OFFICIAL 4 -->
+      <div class="col-6">
+        <div class="official-card text-center h-100">
+          <img src="/images/work_president_pafi.jpeg" alt="Official" class="official-img">
+          <h5 class="mt-3 mb-1">Mr. Shrikant Warankar</h5>
+          <p class="official-role">Working President (PAFI)</p>
+          <p class="official-desc">
+            Operational oversight and execution
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="referees-section py-5">
+  <div class="container">
+
+    <h2 class="section-title mb-5">
+      Our Referees
+    </h2>
+
+    <div class="row g-4 justify-content-center">
+
+      <!-- REFEREE 1 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="/images/biswanath_yadav.jpeg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Biswanath Yadav</h6>
+          <p class="referee-role">Chief Referee (WBAA)</p>
+        </div>
+      </div>
+
+      <!-- REFEREE 2 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="images/sashikant_yadav.jpeg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Shashikant Yadav</h6>
+          <p class="referee-role">State Referee (WBAA)</p>
+        </div>
+      </div>
+
+      <!-- REFEREE 3 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="/images/suryansh2.jpg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Suryansh Singh</h6>
+          <p class="referee-role">State Referee (WBAA)</p>
+        </div>
+      </div>
+
+      <!-- REFEREE 4 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="images/sahil_shaw.jpeg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Sahil Shaw</h6>
+          <p class="referee-role">State Referee (WBAA)</p>
+        </div>
+      </div>
+
+      <!-- REFEREE 5 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="/images/tushar_yadav.jpeg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Tushar Yadav </h6>
+          <p class="referee-role">State Referee (WBAA)</p>
+        </div>
+      </div>
+
+      <!-- REFEREE 6 -->
+      <div class="col-6">
+        <div class="referee-card text-center h-100">
+          <img src="/images/ayush2.jpg" alt="Referee" class="referee-img">
+          <h6 class="mt-3 mb-1">Mr. Ayush Shaw</h6>
+          <p class="referee-role">State Referee (WBAA)</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<hr class="my-5 soft-divider">
+<%- include('partials/footer') %>
+
+    
+    <% if (adminError) { %>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const modalEl = document.getElementById('adminLoginModal');
+    if (modalEl) {
+      const adminModal = new bootstrap.Modal(modalEl);
+      adminModal.show();
+    }
+  });
+</script>
+<% } %>
+</body>
+</html>
