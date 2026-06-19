@@ -522,13 +522,23 @@ router.post('/home-gallery/update',
           ? removeImages
           : [removeImages];
 
-        gallery.images = gallery.images.filter(img => {
-          if (removeList.includes(img.public_id)) {
-            cloudinary.uploader.destroy(img.public_id);
-            return false;
-          }
-          return true;
-        });
+        const remaining = [];
+
+for (const img of gallery.images) {
+
+  if (removeList.includes(img.public_id)) {
+
+    await cloudinary.uploader.destroy(img.public_id);
+
+  } else {
+
+    remaining.push(img);
+
+  }
+
+}
+
+gallery.images = remaining;
       }
 
       // 🟢 ADD NEW IMAGES
